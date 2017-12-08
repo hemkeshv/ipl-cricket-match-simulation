@@ -1,0 +1,26 @@
+A. Preliminary Steps
+
+create table MatchData(Batsman string, Bowler string, Prob0 decimal(10,5), Prob1 decimal(10,5), Prob2 decimal(10,5), Prob3 decimal(10,5), Prob4 decimal(10,5), Prob6 decimal(10,5), ProbNO decimal(10,5))
+
+create table BowlClust10(Player_Name string, Econ decimal(10,5), SR decimal(10,5), Cluster int)
+
+create table BatClust10(Player_Name string, Avg decimal(10,5), SR decimal(10,5), Cluster int)
+
+To find Cross Product of Bowlers with Batsmen -
+select a.Player_Name as Batsman,b.Player_Name as Bowler,a.Cluster as Batting_Cluster,b.cluster as Bowling_Cluster from batclust10 a, bowlclust10 b;
+
+To combine Match Data with above cross product (TOO COMPUTATIONALLY EXPENSIVE) -
+select * from (select a.Player_Name as Batsman,b.Player_Name as Bowler,a.Cluster as Batting_Cluster,b.cluster as Bowling_Cluster from batclust10 a, bowlclust10 b) natural join matchdata;
+
+B. Player to Player Probabilites with their cluster numbers -
+
+select c.Batsman,c.Bowler,c.Batting_Cluster,d.Cluster as Bowling_Cluster,c.Prob0,c.Prob1,c.Prob2,c.Prob3,c.Prob4,c.Prob6,c.ProbNO from ((select a.Batsman,a.Bowler,b.Cluster as Batting_Cluster,a.Prob0,a.Prob1,a.Prob2,a.Prob3,a.Prob4,a.Prob6,a.ProbNO from ((select * from matchdata) a) join batclust10 b on a.Batsman=b.Player_Name) c) join bowlclust10 d on c.Bowler=d.Player_Name;
+
+C. Cluster to Cluster Probabilities -
+
+select e.Batting_Cluster,e.Bowling_Cluster,avg(e.Prob0),avg(e.Prob1),avg(e.Prob2),avg(e.Prob3),avg(e.Prob4),avg(e.Prob6),avg(e.ProbNO) from ((select c.Batsman,c.Bowler,c.Batting_Cluster,d.Cluster as Bowling_Cluster,c.Prob0,c.Prob1,c.Prob2,c.Prob3,c.Prob4,c.Prob6,c.ProbNO from ((select a.Batsman,a.Bowler,b.Cluster as Batting_Cluster,a.Prob0,a.Prob1,a.Prob2,a.Prob3,a.Prob4,a.Prob6,a.ProbNO from ((select * from matchdata) a) join batclust10 b on a.Batsman=b.Player_Name) c) join bowlclust10 d on c.Bowler=d.Player_Name) e) group by e.Batting_Cluster,e.Bowling_Cluster order by e.Batting_Cluster asc,e.Bowling_Cluster asc;
+
+Steps (Starting from the innermost query) -
+1. Get the Player to Player Probabilities from the files in Step 1.
+2. Join each entry with the batting and bowling cluster tables to get the cluster numbers for each batsman-bowler combination.
+3. Using aggregation operations such as average, we find the cumulative average probabilities for every cluster to cluster combination. In this case as we have 10 clusters, we get 10 * 10 = 100 combinations.

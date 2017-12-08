@@ -1,0 +1,11 @@
+->Input table :
+create table Input(innings int,type int,position int,name string) row format delimited fields terminated by ',';
+Load data inpath '/user/hadoop/Ip1.txt' into table Input;
+
+1. create table clusterInput(Name string,batclust int,bowlclust int);
+2.select * into clusterInput(select distinct(b1.Player_Name),b1.cluster,b2.cluster from batclust10 b1,bowlclust10 b2,Input i where b1.Player_Name=b2.Player_Name and b1.Player_Name=i.Name);
+Note: if select * into doesnt work try:
+insert overwrite table clusterInput select distinct(b1.Player_Name),b1.cluster,b2.cluster from batclust10 b1,bowlclust10 b2,Input i where i.Name=b2.Player_Name and i.Name=b1.Player_Name;
+
+3.create table clusterNo(innings int,type int,position int,name string,clusterno int);
+4.insert overwrite table clusterNo select i.innings,i.type,i.position,i.Name,CASE WHEN i.Type=1 then c.batclust when i.Type=2 then c.bowlclust end from clusterInput c, Input i where c.Name=i.Name;

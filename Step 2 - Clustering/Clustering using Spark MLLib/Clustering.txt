@@ -1,0 +1,17 @@
+import org.apache.spark.mllib.clustering.KMeans
+import org.apache.spark.mllib.linalg.Vectors
+
+val inpfile = sc.textFile(“/Users/hadoop/Public/batting.csv”)//the input file
+val predictfile = sc.textFile("/Users/hadoop/Public/predict.csv”)// file we want to determine the clusters for 
+
+//collect features, fit into a vector based on data type
+val parsedData = inpfile.map(s => Vectors.dense(s.split(',').map(_.toDouble))).cache()
+val predictData = predictfile.map(s => Vectors.dense(s.split(',').map(_.toDouble))).cache()
+//10 clusters based on silhouette method
+val numClusters = 10
+//oscillations nearly stop at 200 iterations 
+val numIterations = 200
+//training the model based on input data and number of clusters running it for the user defined number of iterations
+val clusters = KMeans.train(parsedData, numClusters, numIterations)
+// predicting for batting/bowling data
+clusters.predict(predictData).foreach(println)

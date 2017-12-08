@@ -1,0 +1,62 @@
+1	1	0	LMP Simmons	6
+1	1	1	PA Patel	7
+1	1	2	RG Sharma	7
+1	1	3	KA Pollard	8
+1	1	4	AT Rayudu	6
+1	1	5	HH Pandya	1
+1	1	6	Harbhajan Singh	7
+1	1	7	J Suchith	1
+1	1	8	MJ McClenaghan	1
+1	1	9	R Vinay Kumar	1
+1	1	10	SL Malinga	6
+1	2	0	A Nehra	1
+1	2	1	MM Sharma	8
+1	2	2	A Nehra	1
+1	2	3	R Ashwin	1
+1	2	4	A Nehra	1
+1	2	5	RA Jadeja	1
+1	2	6	P Negi	1
+1	2	7	R Ashwin	1
+1	2	8	P Negi	1
+1	2	9	MM Sharma	8
+1	2	10	RA Jadeja	1
+1	2	11	DJ Bravo	1
+1	2	12	DR Smith	2
+1	2	13	DJ Bravo	1
+1	2	14	DR Smith	2
+1	2	15	MM Sharma	8
+1	2	16	A Nehra	1
+1	2	17	DJ Bravo	1
+1	2	18	MM Sharma	8
+1	2	19	DJ Bravo	1
+2	1	0	DR Smith	1
+2	1	1	MEK Hussey	0
+2	1	2	SK Raina	6
+2	1	3	MS Dhoni	7
+2	1	4	DJ Bravo	6
+2	1	5	P Negi	5
+2	1	6	F du Plessis	1
+2	1	7	RA Jadeja	0
+2	1	8	R Ashwin	2
+2	1	9	MM Sharma	8
+2	1	10	A Nehra	1
+2	2	0	SL Malinga	8
+2	2	1	MJ McClenaghan	7
+2	2	2	SL Malinga	8
+2	2	3	R Vinay Kumar	7
+2	2	4	MJ McClenaghan	7
+2	2	5	R Vinay Kumar	7
+2	2	6	HH Pandya	1
+2	2	7	Harbhajan Singh	8
+2	2	8	HH Pandya	1
+2	2	9	Harbhajan Singh	8
+2	2	10	HH Pandya	1
+2	2	11	Harbhajan Singh	8
+2	2	12	HH Pandya	1
+2	2	13	Harbhajan Singh	8
+2	2	14	MJ McClenaghan	7
+2	2	15	SL Malinga	8
+2	2	16	R Vinay Kumar	7
+2	2	17	SL Malinga	8
+2	2	18	MJ McClenaghan	7
+2	2	19	R Vinay Kumar	7
